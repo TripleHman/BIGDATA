@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "x<-c(1,2,3)\nx*2\nx=x*2\nround(23123123.123456,3)\nround(23123123.123456,-3)\nround(23123123.123456,-4)\n1.4:5.6\nseq(1,9)\nseq(1,9) == 1:9\nx<-c(50,40,80,90,65,32,45,78,45)\nsummary(x)\nsort(x)\n?sort\nsort(x,decreasing=T)\nrev(x)\n",
+    "created" : 1457334852516.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4248383942",
+    "id" : "9D27D5D7",
+    "lastKnownWriteTime" : 1457341013,
+    "last_content_update" : 1457341013391,
+    "path" : "C:/Users/CGU/Desktop/BIG DATA/BIGDATA/HW1.md",
+    "project_path" : "HW1.md",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "markdown"
+}
