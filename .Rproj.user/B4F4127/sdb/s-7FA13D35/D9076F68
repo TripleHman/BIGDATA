@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1459150740758.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D9076F68",
+    "lastKnownWriteTime" : 3539890013005164595,
+    "last_content_update" : 1459150740758,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "8ge395anu2",
+        "caption" : "PointsEMax",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=PointsEMax&cache_key=8ge395anu2",
+        "displayedObservations" : 31,
+        "environment" : "",
+        "object" : "PointsEMax",
+        "totalObservations" : 31,
+        "variables" : 26
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

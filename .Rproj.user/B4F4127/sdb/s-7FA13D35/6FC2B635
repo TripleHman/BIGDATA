@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1459150780261.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "6FC2B635",
+    "lastKnownWriteTime" : 13647000885002240,
+    "last_content_update" : 1459150780261,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "cgenn24or0",
+        "caption" : "ThreesPMax",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=ThreesPMax&cache_key=cgenn24or0",
+        "displayedObservations" : "32",
+        "environment" : "",
+        "object" : "ThreesPMax",
+        "totalObservations" : "32",
+        "variables" : "27"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
