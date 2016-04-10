@@ -1,0 +1,71 @@
+---
+title: "Facebook粉絲團分析（蔡英文 Tsai Ing-wen）"
+output: html_document
+---
+##分析2016/01/01至今蔡英文 Tsai Ing-wen粉絲團所有貼文
+#讀取蔡英文 Tsai Ing-wen粉絲團資料
+```{r}
+if (!require('Rfacebook')){
+  install.packages("Rfacebook")
+  library(Rfacebook)
+}
+token<-'CAAYbNjv1Q1ABANC4M3z0PzgNg69YPZADsxLmX564UFnIHDXR0X6qs0g55WvdMnttiF1gneRAMqs7iXS91fk5n9SPFAr7WtoJVLVoDyp0z7z5UGwLQ5lxvGjtlFMO5NhCUkk2BCDjFzgZB6llULCci4Ew4Ew4Pn4vxZA154xZAxk44JrGwZCDAkI15rlwHvcSALPXB4gkNX7SAyUmZBJ5bgJn6yr0k2tQIZD'
+totalPage<-NULL
+lastDate<-Sys.Date()
+DateVectorStr<-as.character(seq(as.Date("2016-01-01"),lastDate,by="5 days"))
+for(i in 1:(length(DateVectorStr)-1)){
+  tempPage<-getPage("tsaiingwen", token,
+                   since = DateVectorStr[i],until = DateVectorStr[i+1])
+  totalPage<-rbind(totalPage,tempPage)
+}
+```
+
+#每日發文數分析
+
+```{r}
+totalPage$datetime <- as.POSIXct(totalPage$created_time, 
+                                 format = "%Y-%m-%dT%H:%M:%S+0000", 
+                                 tz = "GMT") #2016-01-16T15:05:36+0000
+totalPage$dateTPE <- format(totalPage$datetime, "%Y-%m-%d", 
+                            tz = "Asia/Taipei") #2016-01-16
+totalPage$weekdays <-weekdays(as.Date(totalPage$dateTPE))
+PostCount<-aggregate(id~dateTPE,totalPage,length)
+library(knitr)
+kable(head(PostCount[order(PostCount$id,decreasing = T),]))
+```
+
+##討論：選前之夜
+
+#每日likes數
+
+```{r}
+
+likescount<-aggregate(likes_count~dateTPE,totalPage,sum)
+library(knitr)
+kable(head(likescount[order(likescount$likes_count,decreasing = T),]))
+```
+
+##討論：總統選舉，蔡英文當選台灣總統
+
+#每日Comments數
+
+```{r}
+commentscount<-aggregate(comments_count~dateTPE,totalPage,sum)
+library(knitr)
+kable(head(commentscount[order(commentscount$comments_count,decreasing = T),]))
+```
+
+##討論：CNN點評全球12女性政治領袖蔡英文入選，
+##港大三百學生罷課，
+##蔡英文表態支持92共識以及中華民國憲政
+
+#shares數分析
+
+```{r}
+sharescount<-aggregate(shares_count~dateTPE,totalPage,sum)
+library(knitr)
+kable(head(sharescount[order(sharescount$shares_count,decreasing = T),]))
+```
+
+##討論：總統選舉，蔡英文當選台灣總統
+
