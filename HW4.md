@@ -1,15 +1,15 @@
 ---
-title: "Facebook?????Τ��R?]???^?? Tsai Ing-wen?^"
+title: "Facebook粉絲團分析Tsai Ing-wen "
 output: html_document
 ---
-##?��R2016/01/01?ܤ????^?? Tsai Ing-wen?????ΩҦ??K??
-#Ū?????^?? Tsai Ing-wen?????θ???
+##分析日期 2016/01/01至今 Tsai Ing-wen 粉絲團 的貼文 
+#讀取Tsai Ing-wen 粉絲團資料
 ```{r}
 if (!require('Rfacebook')){
   install.packages("Rfacebook")
   library(Rfacebook)
 }
-token<-'CAAYbNjv1Q1ABANC4M3z0PzgNg69YPZADsxLmX564UFnIHDXR0X6qs0g55WvdMnttiF1gneRAMqs7iXS91fk5n9SPFAr7WtoJVLVoDyp0z7z5UGwLQ5lxvGjtlFMO5NhCUkk2BCDjFzgZB6llULCci4Ew4Ew4Pn4vxZA154xZAxk44JrGwZCDAkI15rlwHvcSALPXB4gkNX7SAyUmZBJ5bgJn6yr0k2tQIZD'
+token<-'CAACEdEose0cBADhN4SZC5FYZAU6MDR0QiLtrcC9AI9cxbBWOH4J3U3scRJcRBYHMZB67jmZCfCZAhDacWcZC2aFJWfLZBRIZBmh3mKvRxwvRZCvZAYayIN37aEBeRN67GCTkgFUn1mTvDDIZA5lJHftbjCFFurw4rXsZBQfQLpK3Vji8uzp2TU46I9r4WBBP7p7eCdYgMTGkmajtMwZDZD'
 totalPage<-NULL
 lastDate<-Sys.Date()
 DateVectorStr<-as.character(seq(as.Date("2016-01-01"),lastDate,by="5 days"))
@@ -20,7 +20,7 @@ for(i in 1:(length(DateVectorStr)-1)){
 }
 ```
 
-#?C???o???Ƥ��R
+#每日發文數分析
 
 ```{r}
 totalPage$datetime <- as.POSIXct(totalPage$created_time, 
@@ -34,9 +34,9 @@ library(knitr)
 kable(head(PostCount[order(PostCount$id,decreasing = T),]))
 ```
 
-##?Q?סG???e???]
+##討論：總統大選前夕發文數比較多
 
-#?C??likes??
+#每日likes數分析
 
 ```{r}
 
@@ -45,9 +45,9 @@ library(knitr)
 kable(head(likescount[order(likescount$likes_count,decreasing = T),]))
 ```
 
-##?Q?סG?`?ο??|?A???^???????x?W?`??
+##討論：蔡英文當選總統
 
-#?C??Comments??
+#Comments數分析
 
 ```{r}
 commentscount<-aggregate(comments_count~dateTPE,totalPage,sum)
@@ -55,11 +55,10 @@ library(knitr)
 kable(head(commentscount[order(commentscount$comments_count,decreasing = T),]))
 ```
 
-##?Q?סGCNN?I?????y12?k?ʬF?v???S???^???J???A
-##???j?T?ʾǥͽ}?ҡA
-##???^?????A????92?@?ѥH?Τ??إ��??ˬF
+##討論：蔡英文公開贊同92共識，被網民灌爆
 
-#shares?Ƥ��R
+
+#shares數分析
 
 ```{r}
 sharescount<-aggregate(shares_count~dateTPE,totalPage,sum)
@@ -67,5 +66,5 @@ library(knitr)
 kable(head(sharescount[order(sharescount$shares_count,decreasing = T),]))
 ```
 
-##?Q?סG?`?ο??|?A???^???????x?W?`??
+##討論：蔡英文當選總統
 

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Facebook粉絲團分析Tsai Ing-wen \"\noutput: html_document\n---\n##分析日期 2016/01/01至今 Tsai Ing-wen 粉絲團 的貼文 \n#讀取Tsai Ing-wen 粉絲團資料\n```{r}\nif (!require('Rfacebook')){\n  install.packages(\"Rfacebook\")\n  library(Rfacebook)\n}\ntoken<-'CAACEdEose0cBADhN4SZC5FYZAU6MDR0QiLtrcC9AI9cxbBWOH4J3U3scRJcRBYHMZB67jmZCfCZAhDacWcZC2aFJWfLZBRIZBmh3mKvRxwvRZCvZAYayIN37aEBeRN67GCTkgFUn1mTvDDIZA5lJHftbjCFFurw4rXsZBQfQLpK3Vji8uzp2TU46I9r4WBBP7p7eCdYgMTGkmajtMwZDZD'\ntotalPage<-NULL\nlastDate<-Sys.Date()\nDateVectorStr<-as.character(seq(as.Date(\"2016-01-01\"),lastDate,by=\"5 days\"))\nfor(i in 1:(length(DateVectorStr)-1)){\n  tempPage<-getPage(\"tsaiingwen\", token,\n                   since = DateVectorStr[i],until = DateVectorStr[i+1])\n  totalPage<-rbind(totalPage,tempPage)\n}\n```\n\n#每日發文數分析\n\n```{r}\ntotalPage$datetime <- as.POSIXct(totalPage$created_time, \n                                 format = \"%Y-%m-%dT%H:%M:%S+0000\", \n                                 tz = \"GMT\") #2016-01-16T15:05:36+0000\ntotalPage$dateTPE <- format(totalPage$datetime, \"%Y-%m-%d\", \n                            tz = \"Asia/Taipei\") #2016-01-16\ntotalPage$weekdays <-weekdays(as.Date(totalPage$dateTPE))\nPostCount<-aggregate(id~dateTPE,totalPage,length)\nlibrary(knitr)\nkable(head(PostCount[order(PostCount$id,decreasing = T),]))\n```\n\n##討論：總統大選前夕發文數比較多\n\n#每日likes數分析\n\n```{r}\n\nlikescount<-aggregate(likes_count~dateTPE,totalPage,sum)\nlibrary(knitr)\nkable(head(likescount[order(likescount$likes_count,decreasing = T),]))\n```\n\n##討論：蔡英文當選總統\n\n#Comments數分析\n\n```{r}\ncommentscount<-aggregate(comments_count~dateTPE,totalPage,sum)\nlibrary(knitr)\nkable(head(commentscount[order(commentscount$comments_count,decreasing = T),]))\n```\n\n##討論：蔡英文公開贊同92共識，被網民灌爆\n\n\n#shares數分析\n\n```{r}\nsharescount<-aggregate(shares_count~dateTPE,totalPage,sum)\nlibrary(knitr)\nkable(head(sharescount[order(sharescount$shares_count,decreasing = T),]))\n```\n\n##討論：蔡英文當選總統\n\n",
+    "created" : 1460353204383.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2214443257",
+    "id" : "D806C1FB",
+    "lastKnownWriteTime" : 1460355032,
+    "last_content_update" : 1460355032424,
+    "path" : "C:/Users/CGU/Desktop/新增資料夾/BIGDATA/HW4.md",
+    "project_path" : "HW4.md",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "markdown"
+}
