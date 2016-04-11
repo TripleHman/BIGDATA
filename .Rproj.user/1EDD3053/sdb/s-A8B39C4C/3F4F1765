@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Facebook?????Τ��R?]???^?? Tsai Ing-wen?^\"\noutput: html_document\n---\n##?��R2016/01/01?ܤ????^?? Tsai Ing-wen?????ΩҦ??K??\n#Ū?????^?? Tsai Ing-wen?????θ???\n```{r}\nif (!require('Rfacebook')){\n  install.packages(\"Rfacebook\")\n  library(Rfacebook)\n}\ntoken<-'CAAYbNjv1Q1ABANC4M3z0PzgNg69YPZADsxLmX564UFnIHDXR0X6qs0g55WvdMnttiF1gneRAMqs7iXS91fk5n9SPFAr7WtoJVLVoDyp0z7z5UGwLQ5lxvGjtlFMO5NhCUkk2BCDjFzgZB6llULCci4Ew4Ew4Pn4vxZA154xZAxk44JrGwZCDAkI15rlwHvcSALPXB4gkNX7SAyUmZBJ5bgJn6yr0k2tQIZD'\ntotalPage<-NULL\nlastDate<-Sys.Date()\nDateVectorStr<-as.character(seq(as.Date(\"2016-01-01\"),lastDate,by=\"5 days\"))\nfor(i in 1:(length(DateVectorStr)-1)){\n  tempPage<-getPage(\"tsaiingwen\", token,\n                   since = DateVectorStr[i],until = DateVectorStr[i+1])\n  totalPage<-rbind(totalPage,tempPage)\n}\n```\n\n#?C???o???Ƥ��R\n\n```{r}\ntotalPage$datetime <- as.POSIXct(totalPage$created_time, \n                                 format = \"%Y-%m-%dT%H:%M:%S+0000\", \n                                 tz = \"GMT\") #2016-01-16T15:05:36+0000\ntotalPage$dateTPE <- format(totalPage$datetime, \"%Y-%m-%d\", \n                            tz = \"Asia/Taipei\") #2016-01-16\ntotalPage$weekdays <-weekdays(as.Date(totalPage$dateTPE))\nPostCount<-aggregate(id~dateTPE,totalPage,length)\nlibrary(knitr)\nkable(head(PostCount[order(PostCount$id,decreasing = T),]))\n```\n\n##?Q?סG???e???]\n\n#?C??likes??\n\n```{r}\n\nlikescount<-aggregate(likes_count~dateTPE,totalPage,sum)\nlibrary(knitr)\nkable(head(likescount[order(likescount$likes_count,decreasing = T),]))\n```\n\n##?Q?סG?`?ο??|?A???^???????x?W?`??\n\n#?C??Comments??\n\n```{r}\ncommentscount<-aggregate(comments_count~dateTPE,totalPage,sum)\nlibrary(knitr)\nkable(head(commentscount[order(commentscount$comments_count,decreasing = T),]))\n```\n\n##?Q?סGCNN?I?????y12?k?ʬF?v???S???^???J???A\n##???j?T?ʾǥͽ}?ҡA\n##???^?????A????92?@?ѥH?Τ??إ��??ˬF\n\n#shares?Ƥ��R\n\n```{r}\nsharescount<-aggregate(shares_count~dateTPE,totalPage,sum)\nlibrary(knitr)\nkable(head(sharescount[order(sharescount$shares_count,decreasing = T),]))\n```\n\n##?Q?סG?`?ο??|?A???^???????x?W?`??\n\n",
+    "created" : 1460352925487.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3920171146",
+    "id" : "3F4F1765",
+    "lastKnownWriteTime" : 1460353038,
+    "last_content_update" : 1460353038582,
+    "path" : "C:/Users/CGU/Desktop/新增資料夾/BIGDATA/HW4.Rmd",
+    "project_path" : "HW4.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
